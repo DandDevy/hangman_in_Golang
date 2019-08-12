@@ -7,7 +7,18 @@ import (
 	"strings"
 )
 
-func get_word_to_guess()  {
+func get_word_to_guess() string {
+	var word_to_guess string;
+
+	fmt.Print("Enter the word to guess>>>")
+
+	reader := bufio.NewReader(os.Stdin)
+	word_to_guess, _ = reader.ReadString('\n')
+	word_to_guess = strings.TrimSuffix(word_to_guess, "\n")
+
+	fmt.Println("You have chosen:", word_to_guess)
+
+	return word_to_guess
 
 }
 
