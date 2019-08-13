@@ -7,29 +7,33 @@ import (
 	"strings"
 )
 
-func get_word_to_guess() string {
-	var word_to_guess string;
+func getWordToGuess() string {
+	var wordToGuess string
 
 	fmt.Print("Enter the word to guess>>>")
 
 	reader := bufio.NewReader(os.Stdin)
-	word_to_guess, _ = reader.ReadString('\n')
-	word_to_guess = strings.TrimSuffix(word_to_guess, "\n")
+	wordToGuess, _ = reader.ReadString('\n')
+	wordToGuess = strings.TrimSuffix(wordToGuess, "\n")
 
-	fmt.Println("You have chosen:", word_to_guess)
+	fmt.Println("You have chosen:", wordToGuess)
 
-	return word_to_guess
+	return wordToGuess
 
 }
 
 func main()  {
 	fmt.Println("################Welcome to Hangman###################")
 
-	var play_game bool = true
+
+		wordToGuess := getWordToGuess()
+
+
+	var playGame bool = true
 
 	reader := bufio.NewReader(os.Stdin)
 
-	for play_game {
+	for playGame {
 
 		fmt.Print("Would you like to leave? >>>")
 		text, _ := reader.ReadString('\n')
@@ -41,7 +45,7 @@ func main()  {
 		fmt.Println(text)
 
 		if text == "yes" {
-			play_game = false
+			playGame = false
 		}
 
 	}
