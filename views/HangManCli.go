@@ -2,9 +2,23 @@ package views
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"os"
 )
+
+type HangManCli struct {
+	reader Reader
+}
+
+func newHangManCli()  HangManCli{
+	r := bufio.NewReader(os.Stdin)
+	hmc := HangManCli{
+		reader: r,
+	}
+
+	return hmc
+}
 
 func welcomeScreen()  {
 	fmt.Println("#################### WELCOME TO HANGMAN ##########################")
@@ -20,6 +34,14 @@ func getWordToGuess() string {
 	return wordToGuess
 }
 
-func getLetterGuessed() chan {
+func getLetterGuessed() byte {
+
+	var letterGuessed byte
+	reader := bytes.NewReader(os.Stdin)
+	letterGuessed, _=reader.ReadByte()
+
+	fmt.Println("you have chose:", letterGuessed)
+
+	return letterGuessed
 
 }
