@@ -1,51 +1,59 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"os"
-	"strings"
+	"hangman_in_Golang/views"
 )
 
-func getWordToGuess() string {
-	var wordToGuess string
-
-	fmt.Print("Enter the word to guess>>>")
-
-	reader := bufio.NewReader(os.Stdin)
-	wordToGuess, _ = reader.ReadString('\n')
-	wordToGuess = strings.TrimSuffix(wordToGuess, "\n")
-
-	fmt.Println("You have chosen:", wordToGuess)
-
-	return wordToGuess
-
-}
 
 func main()  {
-	fmt.Println("################Welcome to Hangman###################")
+
+		//hmc:= views.HangManCli{Reader: bufio.NewReader(os.Stdin)}
+
+		var hmc views.HangManCli
+
+		hmc = hmc.NewHangManCli()
+
+		hmc.WelcomeScreen()
+
+		wordToGuess := hmc.GetWordToGuess()
 
 
-		wordToGuess := getWordToGuess()
+
+		//fmt.Println(hmc.Reader)
+
+	//	var wordToGuess string
+	//	wordToGuess, _ =hmc.Reader.ReadString('\n')
+	//fmt.Printf("wordToGuess: %s\n", wordToGuess)
+
 
 
 	var playGame bool = true
 
-	reader := bufio.NewReader(os.Stdin)
+	//tester := Tester{"test1"}
+	//
+	//tester.name = "asd"
+	//
+	//
+	//test2 := Tester{}
+	//test2.newTester()
+	//
+	//fmt.Printf("test: %d\n", test2)
+	//
+	//
+	//t := Tester{name:"asd"}
+	//
+	//test3 := &t
+	//
+	//fmt.Printf("test3: %p\n",*test3)
+	//*test3.name="newName"
 
 	for playGame {
+		char := hmc.GetLetterGuessed()
 
-		fmt.Print("Would you like to leave? >>>")
-		text, _ := reader.ReadString('\n')
-
-		//text = text[:len(text) -1] // remove the \n
-
-		text = strings.TrimSuffix(text, "\n") //another way of removing \n
-
-		fmt.Println(text)
-
-		if text == "yes" {
+		if char == '0' {
 			playGame = false
+		} else if char == wordToGuess[0] {
+			break
 		}
 
 	}
