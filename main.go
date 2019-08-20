@@ -1,7 +1,7 @@
 package main
 
 import (
-	"hangman_in_Golang/views"
+	"github.com/DandDevy/hangman_in_Golang/views"
 )
 
 
