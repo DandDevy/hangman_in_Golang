@@ -1,5 +1,9 @@
 package models
 
+
+/**
+HangMan is a game of hang-man that can be initialised by NewHangMan.
+ */
 type HangMan struct {
 	wordToGuess         string
 	numAttemptsLeft     int
@@ -7,11 +11,14 @@ type HangMan struct {
 
 }
 
-func (HM HangMan) NewHangMan(maxAttempts int) HangMan{
-	//HM.wordToGuess = Controller.GetWordToGuess()
-	//max.. = max
-	//numAtt..lt = max
-
+/**
+Initialises the HangMan.
+Takes the word to guess as a parameter.
+ */
+func (HM HangMan) NewHangMan(WTG string) HangMan{
+	HM.wordToGuess = WTG
+	HM.maxNumberOfAttempts = 10
+	HM.numAttemptsLeft = HM.maxNumberOfAttempts
 	return HM
 }
 

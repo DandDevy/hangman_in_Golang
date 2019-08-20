@@ -14,7 +14,21 @@ type HangManCLI struct {
 }
 
 /**
-This is a constructor for the HangMAnCli. It creates a reader to read data from the console.
+Getter for reader of type *bufio.Reader.
+ */
+func (HMC HangManCLI) getReader()  *bufio.Reader{
+	return HMC.Reader
+}
+
+/**
+Setter for reader of type *bufio.Reader.
+*/
+func (HMC HangManCLI) setReader(pointerBufioReader *bufio.Reader)  {
+	HMC.Reader = pointerBufioReader
+}
+
+/**
+This is a constructor for the HangManCli. It creates a reader to read data from the console.
  */
 func (HMC HangManCLI) NewHangManCli() HangManCLI {
 	//HMC:= HangManCLI{
