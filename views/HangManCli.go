@@ -69,7 +69,9 @@ func (HMC HangManCLI) GetLetterGuessed() byte {
 	fmt.Print("Guess a character:(0 for quit):")
 	letterGuessed, _= HMC.Reader.ReadByte()
 
-	fmt.Printf("\nyou have chose: %s %d\n", letterGuessed)
+	fmt.Println("\n", letterGuessed)
+
+	fmt.Printf("\nyou have chose: %v %d\n", letterGuessed)
 
 	return letterGuessed
 
