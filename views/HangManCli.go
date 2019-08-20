@@ -7,28 +7,28 @@ import (
 )
 const QUIT_CHAR = '0'
 /**
-HangManCli is struct that has methods on it to sent and get data from the user.
+HangManCLI is struct that has methods on it to sent and get data from the user.
  */
-type HangManCli struct {
+type HangManCLI struct {
 	Reader *bufio.Reader
 }
 
 /**
 This is a constructor for the HangMAnCli. It creates a reader to read data from the console.
  */
-func (hmc HangManCli) NewHangManCli() HangManCli {
-	//hmc:= HangManCli{
+func (HMC HangManCLI) NewHangManCli() HangManCLI {
+	//HMC:= HangManCLI{
 	//	Reader: bufio.NewReader(os.Stdin),
 	//}
-	hmc.Reader=bufio.NewReader(os.Stdin)
+	HMC.Reader=bufio.NewReader(os.Stdin)
 
-	return hmc
+	return HMC
 }
 
 /**
 This is a welcome screen that prints to the console.
  */
-func (hmc HangManCli) WelcomeScreen()  {
+func (HMC HangManCLI) WelcomeScreen()  {
 	fmt.Println("##################################################################\n\n")
 	fmt.Println("#################### WELCOME TO HANGMAN ##########################\n\n")
 }
@@ -36,23 +36,23 @@ func (hmc HangManCli) WelcomeScreen()  {
 /**
 This uses ReadString from the Reader of the struct.
  */
-func (hmc HangManCli) GetWordToGuess() string {
+func (HMC HangManCLI) GetWordToGuess() string {
 
 	fmt.Print("Enter the word you like to be guessed:")
 	var wordToGuess string
 
-	wordToGuess, _ = hmc.Reader.ReadString('\n') // reading from the command line
+	wordToGuess, _ = HMC.Reader.ReadString('\n') // reading from the command line
 
 	fmt.Println("you have chosen:", wordToGuess)
 
 	return wordToGuess
 }
 
-func (hmc HangManCli) GetLetterGuessed() byte {
+func (HMC HangManCLI) GetLetterGuessed() byte {
 
 	var letterGuessed byte
 	fmt.Print("Guess a character:(0 for quit):")
-	letterGuessed, _= hmc.Reader.ReadByte()
+	letterGuessed, _= HMC.Reader.ReadByte()
 
 	fmt.Printf("\nyou have chose: %s %d\n", letterGuessed)
 

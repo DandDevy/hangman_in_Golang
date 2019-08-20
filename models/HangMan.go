@@ -7,11 +7,11 @@ type HangMan struct {
 
 }
 
-func (hm HangMan) NewHangMan(maxAttempts int) HangMan{
-	//hm.wordToGuess = Controller.GetWordToGuess()
+func (HM HangMan) NewHangMan(maxAttempts int) HangMan{
+	//HM.wordToGuess = Controller.GetWordToGuess()
 	//max.. = max
 	//numAtt..lt = max
 
-	return hm
+	return HM
 }
 

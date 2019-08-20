@@ -7,22 +7,22 @@ import (
 
 func main()  {
 
-		//hmc:= views.HangManCli{Reader: bufio.NewReader(os.Stdin)}
+		//HMC:= views.HangManCLI{Reader: bufio.NewReader(os.Stdin)}
 
-		var hmc views.HangManCli
+		var HMC views.HangManCLI
 
-		hmc = hmc.NewHangManCli()
+		HMC = HMC.NewHangManCli()
 
-		hmc.WelcomeScreen()
+		HMC.WelcomeScreen()
 
-		wordToGuess := hmc.GetWordToGuess()
+		wordToGuess := HMC.GetWordToGuess()
 
 
 
-		//fmt.Println(hmc.Reader)
+		//fmt.Println(HMC.Reader)
 
 	//	var wordToGuess string
-	//	wordToGuess, _ =hmc.Reader.ReadString('\n')
+	//	wordToGuess, _ =HMC.Reader.ReadString('\n')
 	//fmt.Printf("wordToGuess: %s\n", wordToGuess)
 
 
@@ -48,7 +48,7 @@ func main()  {
 	//*test3.name="newName"
 
 	for playGame {
-		char := hmc.GetLetterGuessed()
+		char := HMC.GetLetterGuessed()
 
 		if char == '0' {
 			playGame = false
