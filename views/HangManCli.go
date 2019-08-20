@@ -34,8 +34,9 @@ func (HMC HangManCLI) NewHangManCli() HangManCLI {
 	//HMC:= HangManCLI{
 	//	Reader: bufio.NewReader(os.Stdin),
 	//}
-	HMC.Reader=bufio.NewReader(os.Stdin)
+	//HMC.Reader=bufio.NewReader(os.Stdin)
 
+	HMC.setReader(bufio.NewReader(os.Stdin))
 	return HMC
 }
 
