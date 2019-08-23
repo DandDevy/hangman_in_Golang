@@ -117,8 +117,22 @@ func (HMC HangManCLI) play() {
 	var keepPlaying = true
 
 	for keepPlaying {
+		guess := HMC.GetLetterGuessed()
+
+		if HMC.controller.Check(guess) {
+			HMC.congratulationsScreen()
+		}
+		HMC.displayWordUpdate(HMC.controller.GetFoundWord())
 
 		keepPlaying = HMC.controller.KeepPlaying()
-		break
 	}
+}
+
+func (HMC HangManCLI) congratulationsScreen() {
+
+
+}
+
+func (HMC HangManCLI) displayWordUpdate(found string) {
+
 }

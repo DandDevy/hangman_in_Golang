@@ -66,12 +66,14 @@ func (c Controller) KeepPlaying() bool {
 	return c.hangMan.KeepPlaying()
 }
 
-/**
-updates the word to guess. By removing the letter(s) that was correctly guessed.
-*/
-func (c Controller) UpdateWordToGuess(correctGuess string)  {
 
-	c.hangMan.UpdateWordToGuess(correctGuess)
+func (c Controller) Check(guess string) bool {
+	return c.hangMan.CheckWord(guess)
+}
+
+func (c Controller) GetFoundWord() string {
+
+	return c.hangMan.GetFoundWord()
 }
 
 

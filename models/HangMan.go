@@ -61,8 +61,11 @@ func (HM HangMan) KeepPlaying() bool {
 /**
 updates the word to guess. By removing the letter(s) that was correctly guessed.
  */
-func (HM HangMan) UpdateWordToGuess(correctGuess string)  {
+func (HM HangMan) updateWordToGuess(correctGuess string) string {
+	var newWord string
 	strings.Replace(HM.wordToGuess, correctGuess, "", -1)
+
+	return newWord
 }
 
 /**
@@ -79,14 +82,27 @@ func (HM HangMan) CheckWord(guess string) bool {
 
 	res := false
 
-	if guess != "" {
+	if HM.KeepPlaying() {
 
-		if strings.Contains(HM.wordToGuess, guess) {
-			res = true
+		if guess != "" {
+
+			if strings.Contains(HM.wordToGuess, guess) {
+
+				res = true
+				HM.updateWordToGuess(guess)
+
+			} else {
+				HM.numAttempts++
+			}
 		}
 	}
 
 	return res
+}
+
+func (HM *HangMan) GetFoundWord() string {
+
+	return ""
 }
 
 
