@@ -1,39 +1,77 @@
 package controllers
 
 import (
-	"hangman_in_Golang/models"
+	"fmt"
+	"github.com/DandDevy/hangman_in_Golang/models"
 )
 
 /**
-Struct carrying reference to HangMan game for Command Line Interface.
+Struct carrying reference to hangMan game for Command Line Interface.
  */
 type Controller struct {
-	HangMan models.HangMan
-}
-
-func (C Controller) NewController(HM models.HangMan)  Controller{
-	C.setHangMan(HM)
-	return C
+	hangMan models.HangMan
 }
 
 /**
-Getter for reference variable for HangMan game.
+Constructor for Controller
  */
-func (C Controller) getHangMan()  models.HangMan{
-	return C.HangMan
+func (c Controller) NewController()  Controller{
+	c.hangMan.NewHangManWithoutParam()
+
+	return c
+}
+
+func Start()  {
+
+}
+/**
+Sets word to guess for the hang man game.
+ */
+func (c Controller) SetWord(word string) {
+	c.hangMan.SetWordToGuess(word)
+}
+
+
+func (C Controller) Asd() {
+	fmt.Println("asdasdasdasdasdas")
 }
 
 /**
-Setter for reference for HangMan game.
+Getter for reference variable for hangMan game.
  */
-func (C Controller) setHangMan(HM models.HangMan) {
-	C.HangMan = HM
+func (c Controller) GetHangMan()  models.HangMan{
+	return c.hangMan
 }
 
-func start()  {
-	
+/**
+Setter for reference for hangMan game.
+ */
+func (c Controller) SetHangMan(HM models.HangMan) {
+	c.hangMan = HM
 }
 
-func setWordToGuess(WTG string)  {
+/**
+Gets the size of the word to guess/number of letters left to guess.
+ */
+func (c Controller) GetSizeOfWordToGuess() int {
 
+	return c.hangMan.GetSizeOfWordToGuess()
 }
+
+/**
+Returns boolean to allowing game to go on.
+*/
+func (c Controller) KeepPlaying() bool {
+
+	return c.hangMan.KeepPlaying()
+}
+
+/**
+updates the word to guess. By removing the letter(s) that was correctly guessed.
+*/
+func (c Controller) UpdateWordToGuess(correctGuess string)  {
+
+	c.hangMan.UpdateWordToGuess(correctGuess)
+}
+
+
