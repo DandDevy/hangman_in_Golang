@@ -1,25 +1,29 @@
 package main
 
 import (
+	"fmt"
 	"github.com/DandDevy/hangman_in_Golang/views"
 )
 
 
 func main()  {
 
-		//HMC:= views.HangManCLI{Reader: bufio.NewReader(os.Stdin)}
+	const asd = 'a'
+	fmt.Printf(" %s %T \n",asd, asd)
 
-		var HMC views.HangManCLI
+	//HMC:= views.HangManCLI{Reader: bufio.NewReader(os.Stdin)}
 
-		HMC = HMC.NewHangManCli()
+	var HMC views.HangManCLI
 
-		HMC.WelcomeScreen()
+	HMC = HMC.NewHangManCli()
 
-		wordToGuess := HMC.GetWordToGuess()
+	HMC.WelcomeScreen()
+
+	wordToGuess := HMC.GetWordToGuess()
 
 
 
-		//fmt.Println(HMC.Reader)
+	//fmt.Println(HMC.Reader)
 
 	//	var wordToGuess string
 	//	wordToGuess, _ =HMC.Reader.ReadString('\n')
