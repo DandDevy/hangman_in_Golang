@@ -15,6 +15,7 @@ HangManCLI is struct that has methods on it to sent and get data from the user.
 type HangManCLI struct {
 	Reader      *bufio.Reader
 	wordToGuess string
+	currentGuess string
 	controller  controllers.Controller
 }
 
@@ -43,16 +44,11 @@ func (HMC HangManCLI) NewHangManCli() HangManCLI {
 	//}
 	HMC.Reader=bufio.NewReader(os.Stdin)
 
-	HMC.controller.NewController()
-	HMC.controller.Asd()
+	HMC.controller.NewController().SetWord(HMC.GetWordToGuess())
 
-	HMC.WelcomeScreen()
-
-	HMC.controller.SetWord(HMC.GetWordToGuess())
+	//HMC.controller.SetWord(HMC.GetWordToGuess())
 
 	HMC.play()
-
-	HMC.GoodByeScreen()
 
 	//HMC.setReader(bufio.NewReader(os.Stdin))
 	return HMC
@@ -92,47 +88,54 @@ func (HMC HangManCLI) GetWordToGuess() string {
 
 	HMC.wordToGuess = toGuess
 
+
+
 	fmt.Println("you have chosen:", toGuess)
 
 	return toGuess
 }
 
-func (HMC HangManCLI) GetLetterGuessed() string {
+func (HMC HangManCLI) GetLetterGuessed() byte {
 
-	var letterGuessed string
 	fmt.Print("Guess a character(0 for quit):")
 	letterGuessedAsByte, _ := HMC.Reader.ReadByte()
 
-	letterGuessed = string(letterGuessedAsByte)
+	fmt.Println("\n you have chosen: ", string(letterGuessedAsByte))
+	//fmt.Printf("\nyou have chosen: %v %T \n", string(letterGuessedAsByte), string(letterGuessedAsByte))
 
-	fmt.Println("\n you have chosen: ", letterGuessed)
-
-	fmt.Printf("\nyou have chosen: %v %T \n", letterGuessed, letterGuessed)
-
-	return letterGuessed
+	return letterGuessedAsByte
 
 }
 
 func (HMC HangManCLI) play() {
+
+	HMC.WelcomeScreen()
+
 	var keepPlaying = true
 
 	for keepPlaying {
 		guess := HMC.GetLetterGuessed()
+		isRightGuess, updatedGuess:= HMC.controller.Check(guess)
+		HMC.displayWord(updatedGuess)
 
-		if HMC.controller.Check(guess) {
+		if isRightGuess {
 			HMC.congratulationsScreen()
 		}
-		HMC.displayWordUpdate(HMC.controller.GetFoundWord())
 
 		keepPlaying = HMC.controller.KeepPlaying()
 	}
+
+	HMC.GoodByeScreen()
+
 }
 
 func (HMC HangManCLI) congratulationsScreen() {
-
+	fmt.Println("##################################################################\n\n")
+	fmt.Println("###################### congratulations ###########################\n\n")
+	fmt.Println("##################################################################\n\n")
 
 }
 
-func (HMC HangManCLI) displayWordUpdate(found string) {
-
+func (HMC HangManCLI) displayWord(found string) {
+	fmt.Println("Your current guess \n |-->", found)
 }

@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"github.com/DandDevy/hangman_in_Golang/models"
 )
 
@@ -29,11 +28,6 @@ Sets word to guess for the hang man game.
  */
 func (c Controller) SetWord(word string) {
 	c.hangMan.SetWordToGuess(word)
-}
-
-
-func (C Controller) Asd() {
-	fmt.Println("asdasdasdasdasdas")
 }
 
 /**
@@ -66,14 +60,16 @@ func (c Controller) KeepPlaying() bool {
 	return c.hangMan.KeepPlaying()
 }
 
-
-func (c Controller) Check(guess string) bool {
+/**
+Checks a byte and returns a bool and string of current desk.
+ */
+func (c Controller) Check(guess byte) (bool, string) {
 	return c.hangMan.CheckWord(guess)
 }
 
 func (c Controller) GetFoundWord() string {
 
-	return c.hangMan.GetFoundWord()
+	return c.hangMan.GetUserGuess()
 }
 
 

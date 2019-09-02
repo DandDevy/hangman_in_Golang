@@ -11,8 +11,10 @@ hangMan is a game of hang-man that can be initialised by NewHangMan.
 const maxNumberOfAttempts int  = 10
 
 type HangMan struct {
-	wordToGuess         string
-	numAttempts         int
+	wordToGuess		string
+	numAttempts		int
+	currentGuess	string
+	userGuess		string
 }
 
 //func NewHangMan(wordToGuess string) *hangMan {
@@ -25,6 +27,9 @@ func (HM *HangMan) WordToGuess() string {
 
 func (HM *HangMan) SetWordToGuess(wordToGuess string) {
 	HM.wordToGuess = wordToGuess
+	for i := 0; i < len(wordToGuess); i++ {
+		HM.currentGuess += "_"
+	}
 }
 
 
@@ -61,9 +66,9 @@ func (HM HangMan) KeepPlaying() bool {
 /**
 updates the word to guess. By removing the letter(s) that was correctly guessed.
  */
-func (HM HangMan) updateWordToGuess(correctGuess string) string {
+func (HM HangMan) updateWordToGuess(correctGuess byte) string {
 	var newWord string
-	strings.Replace(HM.wordToGuess, correctGuess, "", -1)
+	strings.Replace(HM.wordToGuess, string(correctGuess), "", -1)
 
 	return newWord
 }
@@ -78,17 +83,18 @@ func (HM HangMan) GetSizeOfWordToGuess() int {
 /**
 Checks if the guess is correct. Returns bool.
  */
-func (HM HangMan) CheckWord(guess string) bool {
+func (HM HangMan) CheckWord(guess byte) (bool, string) {
 
-	res := false
+	isGoodGuess := false
+
 
 	if HM.KeepPlaying() {
 
-		if guess != "" {
+		if guess != 0 {	//In golang when something is allocated it is given the value of 0 at the beginning
 
-			if strings.Contains(HM.wordToGuess, guess) {
+			if strings.Contains(HM.wordToGuess, string(guess)) {
 
-				res = true
+				isGoodGuess = true
 				HM.updateWordToGuess(guess)
 
 			} else {
@@ -97,13 +103,19 @@ func (HM HangMan) CheckWord(guess string) bool {
 		}
 	}
 
-	return res
+	return isGoodGuess,HM.GetUserGuess()
 }
 
-func (HM *HangMan) GetFoundWord() string {
-
-	return ""
+/**
+Get the the string of current guesses of user ( _ * length of word at start)
+ */
+func (HM *HangMan) GetUserGuess() string {
+	return HM.userGuess
 }
+
+
+
+
 
 
 
