@@ -106,7 +106,9 @@ func (HMC HangManCLI) GetLetterGuessed() byte {
 	return letterGuessedAsByte
 
 }
-
+/**
+This will launch the game.
+ */
 func (HMC HangManCLI) play() {
 
 	HMC.WelcomeScreen()
@@ -115,6 +117,7 @@ func (HMC HangManCLI) play() {
 
 	for keepPlaying {
 		guess := HMC.GetLetterGuessed()
+
 		isRightGuess, updatedGuess:= HMC.controller.Check(guess)
 		HMC.displayWord(updatedGuess)
 
@@ -137,5 +140,6 @@ func (HMC HangManCLI) congratulationsScreen() {
 }
 
 func (HMC HangManCLI) displayWord(found string) {
+	//fmt.Printf("%s      %t\n", found, found)
 	fmt.Println("Your current guess \n |-->", found)
 }

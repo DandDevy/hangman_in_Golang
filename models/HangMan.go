@@ -86,6 +86,7 @@ Checks if the guess is correct. Returns bool.
 func (HM HangMan) CheckWord(guess byte) (bool, string) {
 
 	isGoodGuess := false
+	println("guess in Checkword:", string(guess))
 
 
 	if HM.KeepPlaying() {
@@ -94,6 +95,7 @@ func (HM HangMan) CheckWord(guess byte) (bool, string) {
 
 			if strings.Contains(HM.wordToGuess, string(guess)) {
 
+				println("word to guess contains the guess")
 				isGoodGuess = true
 				HM.updateWordToGuess(guess)
 
